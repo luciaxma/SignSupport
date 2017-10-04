@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="500.0" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signsupport.HomePageController">
+   <children>
+      <JFXButton blendMode="SRC_ATOP" buttonType="RAISED" layoutX="182.0" layoutY="488.0" onAction="#lessonButtonClicked" prefHeight="58.0" prefWidth="137.0" style="-fx-background-color: #ffffff;" text="Lessons" />
+      <Pane layoutX="-2.0" layoutY="-2.0" prefHeight="58.0" prefWidth="608.0" style="-fx-background-color: #000000;">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="59.0" layoutX="21.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/SignSupportLogo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="95.0" layoutY="13.0" prefHeight="36.0" prefWidth="186.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Futura Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <MediaView fx:id="welcomeView" fitHeight="450.0" fitWidth="500.0" layoutY="56.0" />
+   </children>
+</Pane>
