@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="500.0" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="signsupport.LessonListController">
+   <children>
+      <AnchorPane blendMode="SRC_ATOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="598.0" minWidth="500.0" prefHeight="598.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="23.0" layoutY="529.0" onAction="#backToHomeClicked" prefHeight="49.0" prefWidth="91.0" style="-fx-background-color: #ffffff;" text="Back" />
+            <Pane layoutX="-4.0" prefHeight="58.0" prefWidth="608.0" style="-fx-background-color: #000000;">
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="59.0" layoutX="21.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../media/SignSupportLogo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="95.0" layoutY="13.0" prefHeight="36.0" prefWidth="186.0" text="Lessons" textFill="WHITE">
+                     <font>
+                        <Font name="Futura Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton alignment="BASELINE_LEFT" layoutY="283.0" onAction="#taskButtonClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="S3: Our Organization" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="103.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="O2: Hardware hunt" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="148.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="O3: Our Computerized world" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="193.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="O4: Special Keys" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="238.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="E6: Files and Media" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="58.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="O1: Getting to know our computer" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="328.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="S4: Tax - What When and How" />
+            <JFXButton alignment="BASELINE_LEFT" layoutY="373.0" onAction="#otherTaskButtonsClicked" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: #ffffff;" text="S5: Calculating Costs" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
