@@ -30,7 +30,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by Lucia on 2017/10/03.
+ * Controller class for playing task videos
  */
 public class VideoController implements Initializable {
 
@@ -48,7 +48,6 @@ public class VideoController implements Initializable {
 
     @FXML private ImageView imageView;
     @FXML private JFXButton enlargeButton;
-    //@FXML private ImageView enlargedImageView;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,62 +55,66 @@ public class VideoController implements Initializable {
         // set title of video screen when video is playing
         title.setText(MainController.clickedScreen.getVidCaption());
 
+        // get URL path of video
         String videoURL = "src"+ MainController.clickedScreen.getVideoURL();
         String path = new File(videoURL).getAbsolutePath();
         System.out.println(MainController.clickedScreen.getVideoURL());
 
+        // configure MediaView and MediaPlayer
         media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
         mediaPlayer.setAutoPlay(true);
 
+        // get values of media
         mediaPlayer.setOnReady(new Runnable() {
             public void run() {duration = mediaPlayer.getMedia().getDuration();
                 updateValues();
             }
         });
 
-        // disable previous button if first task
+        // disable previous button if first task clicked
         if (MainController.screenNumber == 0) {
             prevButton.setDisable(true);
         }
-        // disable next button if last task
+        // disable next button if last task clicked
         else if (MainController.screenNumber == MainController.screenArr.size()-1) {
             nextButton.setDisable(true);
         }
 
-        //scalability for videos
+        // scalability for videos
         DoubleProperty width = mediaView.fitWidthProperty();
         DoubleProperty height = mediaView.fitHeightProperty();
         width.bind(Bindings.selectDouble(mediaView.sceneProperty(),"width"));
         height.bind(Bindings.selectDouble(mediaView.sceneProperty(),"height"));
 
-        //mp.play();
-
-        System.out.println("ScreenID: " + MainController.clickedScreen.getScreenID());
+        /*System.out.println("ScreenID: " + MainController.clickedScreen.getScreenID());
         System.out.println("ScreenNum: " + MainController.screenNumber);
-        System.out.println("Working controller got screen: " + MainController.clickedScreen.getVidCaption());
+        System.out.println("Working controller got screen: " + MainController.clickedScreen.getVidCaption());*/
 
+        // set speed options to ComboBox
         speed.getItems().removeAll(speed.getItems());
         speed.getItems().addAll("0.5", "Normal", "2.0");
 
-        // Handle ComboBox event.
+        // handle ComboBox event
         speed.setOnAction((event) -> {
             int index = speed.getSelectionModel().getSelectedIndex();
 
+                // if 0.5 speed is selected, set video to play at that speed
                 if (index==0) {
                     mediaPlayer.setRate(.5);
                 }
 
+                // if Normal speed is selected, set video to play at that speed
                 else if (index==1) {
                     mediaPlayer.setRate(1);
                 }
 
+                // if 2.0 speed is selected, set video to play at that speed
                 else if (index==2) {
                     mediaPlayer.setRate(2);
                 }
         });
-
 
         timeSlider.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable ov) {
@@ -121,42 +124,26 @@ public class VideoController implements Initializable {
             }
         });
 
-        timeSlider.maxProperty().bind(Bindings.createDoubleBinding(() -> mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.totalDurationProperty()));
+        timeSlider.maxProperty().bind(Bindings.createDoubleBinding(() ->
+                mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.totalDurationProperty()));
 
-
+        // check if time has changed and if so, change timeSlider to that time
         mediaPlayer.currentTimeProperty().addListener(((observable, oldValue, newValue) -> {
             if (!timeSlider.isValueChanging()) {
                 timeSlider.setValue(newValue.toSeconds());
             }
         }));
 
+        // show Enlarge button - if there is a corresponding image for the clicked task video
         if (MainController.clickedScreen.getImagePath() != null) {
             changeImage();
             enlargeButton.setVisible(true);
         }
 
+        // do not show Enlarge button - if there is no corresponding image for the clicked task video
         else { enlargeButton.setVisible(false);}
 
-        /*imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setStyle("-fx-background-color:#dae7f3;");
-            }
-        });*/
-
-        /*imageView.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                imageView.setStyle("-fx-background-color:transparent;'");
-            }
-        });*/
-
     }
-
-   /* @FXML
-    public void handle1() {
-        imageView.setStyle("-fx-background-color:#dae7f3;");
-    }*/
 
     // for when 'Back' button is clicked on Video - transition back to TaskList
     @FXML
@@ -169,6 +156,7 @@ public class VideoController implements Initializable {
         taskStage.show();
     }
 
+    // for when 'Previous Task' button is clicked on Video - transition to previous task video
     @FXML
     public void previousTaskButtonClicked(ActionEvent event) throws IOException {
 
@@ -182,8 +170,9 @@ public class VideoController implements Initializable {
         videoStage.show();
     }
 
+    // for when 'Next Task' button is clicked on Video - transition to next task video
     @FXML
-    public void nextTaskButtonlicked(ActionEvent event) throws IOException {
+    public void nextTaskButtonClicked(ActionEvent event) throws IOException {
 
         MainController.clickedScreen = MainController.screenArr.get(MainController.screenNumber+1);
         MainController.screenNumber++;
@@ -195,38 +184,36 @@ public class VideoController implements Initializable {
         videoStage.show();
     }
 
+    // play video when Play icon is clicked
     public void play(ActionEvent e) {
         mediaPlayer.play();
-
     }
 
+    // pause video when Pause icon is clicked
     public void pause(ActionEvent e) {
         mediaPlayer.pause();
     }
 
+    // method to change image under the video
     public void changeImage() {
 
         String imagePath = MainController.clickedScreen.getImagePath();
-        //String path = new File(imagePath).getAbsolutePath();
-        //System.out.println(path);
 
-
-        //Image image = new Image(getClass().getResourceAsStream("/shared_images/word_icon.png"));
         Image image = new Image(getClass().getResourceAsStream(imagePath));
         System.out.println("Set a new Image");
 
-        //imageView = new ImageView(image);
         imageView.setImage(image);
         System.out.println("Displaying it");
         System.out.println(imageView.isVisible());
     }
 
+
+    // update values for timeSlider
     protected void updateValues() {
         if (timeSlider != null) {
             Platform.runLater(new Runnable() {
                 public void run() {
                     Duration currentTime = mediaPlayer.getCurrentTime();
-                    //playTime.setText(formatTime(currentTime, duration));
                     timeSlider.setDisable(duration.isUnknown());
                     if (!timeSlider.isDisabled()
                             && duration.greaterThan(Duration.ZERO)
@@ -239,27 +226,7 @@ public class VideoController implements Initializable {
         }
     }
 
- /*   @FXML
-    public void enlargeButtonClicked(ActionEvent event) throws IOException {
-
-        Parent layout = FXMLLoader.load(getClass().getResource("ImagePopup.fxml"));
-        Scene scene = new Scene(layout);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-
-        *//*String imagePath = MainController.clickedScreen.getImagePath();
-
-        Image image = new Image(getClass().getResourceAsStream(imagePath));
-        System.out.println("Set a new Image");
-
-        enlargedImageView.setImage(image);
-        System.out.println("Displaying enlarged");
-        System.out.println(enlargedImageView.isVisible());*//*
-
-
-    }*/
-
+    // when 'Enlarge' button is clicked next to image - enlarges the image in a popup window
     @FXML
     public void enlargeImage() throws IOException {
 

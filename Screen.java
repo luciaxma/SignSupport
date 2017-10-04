@@ -1,7 +1,7 @@
 package signsupport;
 
 /**
- * Created by Lucia on 2017/09/05.
+ * Get and set methods for Screen objects
  */
 
 public class Screen {

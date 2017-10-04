@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Created by Lucia on 2017/10/04.
+ *  Controller for LessonList screen
  */
 public class LessonListController {
 

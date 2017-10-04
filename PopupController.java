@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by Lucia on 2017/10/04.
+ * Controller class to handle enlarging images and its pop up dialog
  */
 public class PopupController implements Initializable {
 

@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * Created by Lucia on 2017/10/02.
+ * Class to read in XML document and extract its data to create Screen objects
  */
 public class XMLReader {
 
@@ -28,30 +28,27 @@ public class XMLReader {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document document = dBuilder.parse(XmlFile);
 
-            //need to normalize - read the stack overflow
+            // normalize document
             document.getDocumentElement().normalize();
 
 
-            //list of lessons - it is reading the elements into the list fine
+            // list of lessons - it is reading the elements into the list
             NodeList nLessonList = document.getElementsByTagName("lesson");
 
-            //list for the screens - it is reading the elements into the list fine, the error is somewhere else
+            // list for the screens - it is reading the elements into the list
             NodeList nScreenList = document.getElementsByTagName("screen");
 
             //lesson list iteration
             for (int temp = 0; temp < nLessonList.getLength(); temp++) {
                 Node nNode = nLessonList.item(temp);
-                //System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
+                }
+            }
 
-
-                }//end if
-            }//end for loop through tree
-
-            //screen list iteration
+            // screen list iteration
             for (int temp = 0; temp < nScreenList.getLength(); temp++) {
 
                 Node nNode2 = nScreenList.item(temp);
@@ -75,22 +72,12 @@ public class XMLReader {
 
                     screenArr.add(screen);
 
-                }//end if
-            }//end for list iteration
-        }//end try
-
-        //catch
+                }
+            }
+        }
         catch (Exception e) {
             e.printStackTrace();
-        }//end catch
-
-        /*System.out.println("_____________________________________________________________");
-        System.out.println("Printing out Screen array");
-
-        for (int i = 0; i < screenArr.size(); i++) {
-
-            System.out.println(screenArr.get(i));
-        }*/
+        }
 
         return screenArr;
 

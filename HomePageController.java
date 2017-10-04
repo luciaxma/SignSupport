@@ -19,7 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-// main controller class
+/**
+ * Controller class for HomePage screen
+ */
 
 public class HomePageController implements Initializable {
 
@@ -31,9 +33,11 @@ public class HomePageController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
+        // set path to Welcome Screen video homepage
         String videoURL = "src/video/Welcome screen.mp4";
         String path = new File(videoURL).getAbsolutePath();
-        
+
+        // play Welcome Screen video on homepage
         welcomeMedia = new Media(new File(path).toURI().toString());
         welcomeMediaPlayer = new MediaPlayer(welcomeMedia);
         welcomeView.setMediaPlayer(welcomeMediaPlayer);
@@ -42,7 +46,7 @@ public class HomePageController implements Initializable {
     }
 
 
-    // for when 'Lesson' button is clicked on HomePage - transition to LessonList
+    // for when 'Lesson' button is clicked on HomePage - transition to LessonList screen
     @FXML
     public void lessonButtonClicked(ActionEvent event) throws IOException {
 

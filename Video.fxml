@@ -33,7 +33,7 @@
             <MediaView fx:id="mediaView" fitHeight="350.0" fitWidth="500.0" />
             <JFXButton buttonType="RAISED" layoutX="29.0" layoutY="466.0" onAction="#backToTaskClicked" prefHeight="47.0" prefWidth="101.0" style="-fx-background-color: #ffffff;" text="Back" />
             <JFXButton fx:id="prevButton" buttonType="RAISED" layoutX="200.0" layoutY="466.0" onAction="#previousTaskButtonClicked" prefHeight="47.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Previous Task" />
-            <JFXButton fx:id="nextButton" buttonType="RAISED" layoutX="344.0" layoutY="466.0" onAction="#nextTaskButtonlicked" prefHeight="47.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Next Task" />
+            <JFXButton fx:id="nextButton" buttonType="RAISED" layoutX="344.0" layoutY="466.0" onAction="#nextTaskButtonClicked" prefHeight="47.0" prefWidth="115.0" style="-fx-background-color: #ffffff;" text="Next Task" />
             <Pane layoutY="350.0" prefHeight="36.0" prefWidth="500.0" style="-fx-background-color: #ffffff;">
                <children>
                   <JFXButton layoutY="-3.0" onAction="#play" prefHeight="36.0" prefWidth="47.0" ripplerFill="#ffffff00" text=" ">

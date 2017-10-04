@@ -20,6 +20,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Controller class for Splash Screen
+ */
+
 public class SplashScreenController implements Initializable {
 
 
@@ -29,20 +33,23 @@ public class SplashScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        // check to see if Spash Screen has loaded, if not, load the Splash Screen
         if (!Main.isSplashLoaded) {
             loadSplashScreen();
         }
 
-
     }
 
     private void loadSplashScreen() {
+
         try {
             Main.isSplashLoaded = true;
 
             StackPane pane = FXMLLoader.load(getClass().getResource(("SplashScreen.fxml")));
             root.getChildren().setAll(pane);
 
+            // instructions for fade effects of Spash Screen
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
             fadeIn.setFromValue(0);
             fadeIn.setToValue(1);
@@ -60,6 +67,8 @@ public class SplashScreenController implements Initializable {
             });
 
             fadeOut.setOnFinished((e) -> {
+
+                // load HomePage once Splash Screen has executed
                 try {
                     Parent layout = FXMLLoader.load(getClass().getResource(("HomePage.fxml")));
                     root.getChildren().setAll(layout);

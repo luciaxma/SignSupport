@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 import java.io.*;
 
+/**
+ * Main class that starts execution
+ */
+
 public class Main extends Application {
 
     Stage window;
@@ -28,7 +32,7 @@ public class Main extends Application {
 
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
-        // Sets the primary stage boundaries to visible bounds of the main screen
+        // sets the primary stage boundaries to visible bounds of the main screen
         primaryStage.setX(primaryScreenBounds.getMaxX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.show();
